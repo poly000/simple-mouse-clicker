@@ -31,7 +31,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             Arg::with_name("right_key")
                 .help("click right key instead")
                 .short("r")
-                .long("right-key")
+                .long("right-key"),
         )
         .get_matches();
 
@@ -50,7 +50,11 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut enigo = Enigo::new();
 
     for _ in 0_u64..times {
-        enigo.mouse_click(if right_key {MouseButton::Right} else {MouseButton::Left});
+        enigo.mouse_click(if right_key {
+            MouseButton::Right
+        } else {
+            MouseButton::Left
+        });
         if !offset.is_zero() {
             sleep(offset);
         }
